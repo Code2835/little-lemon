@@ -67,3 +67,60 @@
     margin: 0;
     text-align: justify;
 }
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .review-card {
+        width: 240px;
+        height: 320px;
+        padding: 15px;
+        margin-right: 15px;
+    }
+
+    .reviewer-photo {
+        width: 100px;
+        height: 100px;
+        margin-right: 12px;
+    }
+
+    .reviewer-name {
+        font-size: 1rem;
+    }
+
+    .review-text p {
+        font-size: 0.85rem;
+    }
+
+    .star {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .review-card {
+        width: 220px;
+        height: 300px;
+        padding: 12px;
+        margin-right: 12px;
+    }
+
+    .reviewer-photo {
+        width: 80px;
+        height: 80px;
+        margin-right: 10px;
+    }
+
+    .reviewer-name {
+        font-size: 0.95rem;
+    }
+
+    .review-text p {
+        font-size: 0.8rem;
+    }
+
+    .star {
+        font-size: 1.2rem;
+        margin: 0 1px;
+    }
+}
+

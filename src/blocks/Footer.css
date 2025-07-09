@@ -37,3 +37,36 @@
   background-color: #333333;
   color: #EDEFEE;
 }
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .footer-content {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .footer-content .logo {
+    max-width: 150px;
+  }
+
+  .footer-content h2 {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .footer-content .logo {
+    max-width: 120px;
+    margin: 0 auto;
+  }
+
+  .footer-content h2 {
+    font-size: 1rem;
+  }
+}

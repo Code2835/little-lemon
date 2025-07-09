@@ -22,16 +22,16 @@ body {
   height: 100%;
 }
 
-/*!* Add some responsive adjustments for smaller screens *!*/
-/*@media (max-width: 768px) {*/
-/*  .App {*/
-/*    max-width: 100%;*/
-/*    padding: 0 1rem;*/
-/*  }*/
+/* Responsive adjustments for mobile devices */
+@media (max-width: 768px) {
+  .App {
+    max-width: 100%;
+  }
 
-/*header > *,*/
-/*section > *,*/
-/*footer > * {*/
-/*    grid-column: 1 / -1; !* Full width on mobile *!*/
-/*  }*/
-/*}*/
+  header > *,
+  section > *,
+  footer > * {
+    grid-column: 1 / -1 !important; /* Full width on mobile */
+    padding: 0 0.5rem;
+  }
+}

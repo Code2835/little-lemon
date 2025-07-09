@@ -1,8 +1,6 @@
 .hero-section {
-    /*background-color: #495E57;*/
     background: linear-gradient(to bottom, #495E57 0%, #495E57 80%, transparent 80%);
     position: relative;
-    /*overflow: visible; !* Позволяет элементам выходить за границы *!*/
 }
 
 .hero-content {
@@ -52,6 +50,50 @@
     min-width: 35px;
     height: auto;
     border-radius: 16px;
-    /*transform: translateY(50px); !* Сдвигаем картинку вниз за границы секции *!*/
+}
 
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .hero-content {
+        grid-column: 1 / -1;
+        text-align: center;
+        padding: 0 1rem;
+    }
+
+    .hero-content h1 {
+        font-size: 48px;
+    }
+
+    .hero-content h2 {
+        font-size: 32px;
+    }
+
+    .hero-content button {
+        margin-bottom: 2rem;
+        align-self: center;
+    }
+
+    .hero-image {
+        grid-column: 1 / -1;
+        justify-content: center;
+        margin-top: 2rem;
+    }
+
+    .hero-image img {
+        max-width: 280px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 36px;
+    }
+
+    .hero-content h2 {
+        font-size: 24px;
+    }
+
+    .hero-image img {
+        max-width: 240px;
+    }
 }

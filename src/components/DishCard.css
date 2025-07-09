@@ -82,3 +82,52 @@
 .order-link:hover {
     color: #EE9972;
 }
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .dish-card {
+        width: 220px;
+        height: 400px;
+    }
+
+    .dish-image {
+        width: 220px;
+        height: 180px;
+    }
+
+    .dish-content {
+        width: 220px;
+        height: 220px;
+        padding: 15px;
+    }
+
+    .dish-title {
+        font-size: 1.1rem;
+    }
+
+    .dish-price {
+        font-size: 1rem;
+    }
+
+    .dish-description {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .dish-card {
+        width: 200px;
+        height: 380px;
+    }
+
+    .dish-image {
+        width: 200px;
+        height: 160px;
+    }
+
+    .dish-content {
+        width: 200px;
+        height: 220px;
+        padding: 12px;
+    }
+}
