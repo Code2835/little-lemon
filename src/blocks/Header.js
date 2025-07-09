@@ -1,10 +1,9 @@
 import './Header.css';
 import {NavLink} from "react-router-dom";
-import {useEffect, useState} from "react";
+import useHideMenu from "../hooks/useHideMenu";
 
 function Header() {
-    const [isVisible, setIsVisible] = useState(true);
-    const [lastScrollY, setLastScrollY] = useState(0);
+    const isVisible = useHideMenu();
 
     const navItems = [
         { to: '/', label: 'Home' },
@@ -14,27 +13,6 @@ function Header() {
         { to: '/order', label: 'Order' },
         { to: '/login', label: 'Login' },
     ];
-
-    useEffect(() => {
-        const handleScroll = () => {
-            const currentScrollY = window.scrollY;
-
-            // Показываем header если:
-            // 1. Скроллим вверх
-            // 2. Находимся в самом верху страницы
-            if (currentScrollY < lastScrollY || currentScrollY < 100) {
-                setIsVisible(true);
-            } else {
-                // Скрываем header при скролле вниз
-                setIsVisible(false);
-            }
-
-            setLastScrollY(currentScrollY);
-        };
-
-        window.addEventListener('scroll', handleScroll, { passive: true });
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, [lastScrollY]);
 
     return (
     <header className={`header-section ${isVisible ? 'visible' : 'hidden'}`}>
