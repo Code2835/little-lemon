@@ -1,38 +1,48 @@
 .App {
-  text-align: center;
+    min-height: 100vh; /* Добавляем обратно min-height */
+    display: flex;
+    flex-direction: column;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+main {
+    flex: 1; /* Основной контент занимает все доступное пространство */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+img {
+    max-width: 350px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* Common section styling */
+header,
+section,
+footer {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-column: 1 / -1; /* Full width by default */
+    padding: 2rem 0;
 }
 
-.App-link {
-  color: #61dafb;
+header {
+    padding: 1rem 0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Content positioning in columns 3-10 */
+header > *,
+section > *,
+footer > * {
+  grid-column: 3 / 11; /* Content in columns 3-10 */
+}
+
+/* Common button styling */
+button {
+    background-color: #F4CE14;
+    color: #333333;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 16px;
+    font-family: 'Karla', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }

@@ -1,0 +1,59 @@
+header {
+  max-height: 100px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: rgba(255, 255, 255, 0.9); /* Белый полупрозрачный фон */
+  backdrop-filter: blur(10px); /* Blur эффект */
+  -webkit-backdrop-filter: blur(10px); /* Для Safari */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Тонкая граница */
+  transition: transform 0.3s ease; /* Плавная анимация появления/скрытия */
+  transform: translateY(0); /* Начальная позиция */
+}
+
+/* Класс для скрытия header */
+header.hidden {
+  transform: translateY(-100%); /* Поднимаем header вверх, скрывая его */
+}
+
+/* Класс для показа header */
+header.visible {
+  transform: translateY(0); /* Возвращаем header на место */
+}
+
+header .logo {
+  grid-column: 3 / 5;
+  max-height: 60px;
+}
+
+header nav {
+  grid-column: 5 / 11;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav li {
+  margin-left: 1.5rem;
+  cursor: pointer;
+}
+
+nav ul li a.active {
+  color: #f4ce14;
+  font-weight: bold;
+}
+
+nav ul li a {
+  color: #333333;
+  font-weight: 800;
+  font-family: 'Karla', sans-serif;
+  text-decoration: none;
+  text-transform: uppercase;
+}

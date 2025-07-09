@@ -1,0 +1,57 @@
+.hero-section {
+    /*background-color: #495E57;*/
+    background: linear-gradient(to bottom, #495E57 0%, #495E57 80%, transparent 80%);
+    position: relative;
+    /*overflow: visible; !* Позволяет элементам выходить за границы *!*/
+}
+
+.hero-content {
+    grid-column: 3 / 7;
+    display: flex;
+    flex-direction: column;
+}
+
+.hero-content h1 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-size: 64px;
+    font-family: 'Markazi', serif;
+    font-weight: 600;
+    color: #f4ce14;
+}
+
+.hero-content h2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 40px;
+    font-family: 'Markazi', serif;
+    font-weight: 600;
+    color: #EDEFEE;
+}
+
+.hero-content p {
+    margin-bottom: 2rem;
+    color: #EDEFEE;
+}
+
+.hero-content button {
+    grid-column: 3 / 5;
+    margin-top: auto;
+    margin-bottom: 7rem;
+    max-width: 200px;
+}
+
+.hero-image {
+    grid-column: 7 / 11;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.hero-image img {
+    max-width: 350px;
+    min-width: 35px;
+    height: auto;
+    border-radius: 16px;
+    /*transform: translateY(50px); !* Сдвигаем картинку вниз за границы секции *!*/
+
+}
