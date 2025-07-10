@@ -1,0 +1,333 @@
+.booking-form {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #EDEFEE;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.booking-form h2 {
+    font-family: 'Markazi', serif;
+    font-weight: 600;
+    font-size: 2.5rem;
+    color: #333333;
+    margin-top: 0;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.form-label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+}
+
+.form-label label {
+    font-family: 'Karla', sans-serif;
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #333333;
+    margin-bottom: 0.5rem;
+}
+
+.form-label input,
+.form-label select,
+.form-label textarea {
+    font-family: 'Karla', sans-serif;
+    font-size: 1rem;
+    padding: 0.75rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+    background-color: #fff;
+}
+
+.form-label input:focus,
+.form-label select:focus,
+.form-label textarea:focus {
+    outline: none;
+    border-color: #F4CE14;
+    box-shadow: 0 0 0 3px rgba(244, 206, 20, 0.2);
+}
+
+.form-label textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* Range slider styling */
+.form-label input[type="range"] {
+    padding: 0;
+    border: none;
+    /*background: transparent;*/
+    height: 4px;
+    border-radius: 3px;
+    outline: none;
+    cursor: pointer;
+    appearance: none; /* Убираем стандартные стили */
+    /*background: linear-gradient(to right, #F4CE14 0%, #F4CE14 20%, #ddd 50%, #ddd 100%);*/
+    background: #495E57;
+}
+
+.form-label input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    background: #495E57;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.form-label input[type="range"]::-moz-range-thumb {
+    width: 24px;
+    height: 24px;
+    background: #495E57;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.form-label span {
+    font-weight: bold;
+    color: #000000;
+    font-size: 1.3rem;
+    min-width: 20px; /* Фиксированная ширина для стабильности */
+}
+
+/* Guests counter display */
+.guests-counter {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.guests-counter label {
+    margin-bottom: 0 !important;
+}
+
+/* ТОЛЬКО кнопка отправки формы - изолируем от глобальных стилей */
+.booking-form button[type="submit"] {
+    width: 100%;
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    padding: 1rem;
+    background-color: #F4CE14 !important;
+    color: #333333 !important;
+    border: none !important;
+    border-radius: 16px !important;
+    font-family: 'Karla', sans-serif !important;
+    font-weight: bold !important;
+    cursor: pointer !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
+    transition: all 0.3s ease !important;
+}
+
+.booking-form button[type="submit"]:hover {
+    transform: translate(-2px, -2px) !important;
+    background-color: #EE9972 !important;
+}
+
+.booking-form button[type="submit"]:active {
+    transform: translateY(0) !important;
+}
+
+/* Custom DatePicker Styles */
+.date-picker-wrapper {
+    width: 100%;
+}
+
+.date-picker-input {
+    width: 100% !important;
+    font-family: 'Karla', sans-serif !important;
+    font-size: 1rem !important;
+    padding: 0.75rem !important;
+    border: 2px solid #ddd !important;
+    border-radius: 8px !important;
+    background-color: #fff !important;
+    transition: border-color 0.3s ease !important;
+    box-sizing: border-box !important;
+}
+
+.date-picker-input:focus {
+    outline: none !important;
+    border-color: #F4CE14 !important;
+    box-shadow: 0 0 0 3px rgba(244, 206, 20, 0.2) !important;
+}
+
+/* Calendar popup styles */
+.react-datepicker {
+    font-family: 'Karla', sans-serif !important;
+    border: 2px solid #F4CE14 !important;
+    border-radius: 12px !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15) !important;
+    z-index: 9999 !important;
+}
+
+.react-datepicker__header {
+    background-color: #F4CE14 !important;
+    border-bottom: none !important;
+    border-radius: 10px 10px 0 0 !important;
+}
+
+.react-datepicker__current-month {
+    color: #333333 !important;
+    font-weight: bold !important;
+    font-size: 1.1rem !important;
+}
+
+.react-datepicker__day-name {
+    color: #333333 !important;
+    font-weight: bold !important;
+}
+
+.react-datepicker__day {
+    color: #333333 !important;
+    font-weight: 500 !important;
+    border-radius: 6px !important;
+    margin: 2px !important;
+}
+
+.react-datepicker__day:hover {
+    background-color: #EE9972 !important;
+    color: white !important;
+}
+
+.react-datepicker__day--selected {
+    background-color: #495E57 !important;
+    color: white !important;
+}
+
+.react-datepicker__day--today {
+    background-color: #F4CE14 !important;
+    color: #333333 !important;
+    font-weight: bold !important;
+}
+
+.react-datepicker__day--disabled {
+    color: #ccc !important;
+    cursor: not-allowed !important;
+}
+
+/* ВАЖНО: Переопределяем стили навигационных кнопок календаря */
+.react-datepicker__navigation {
+    background: none !important;
+    border: none !important;
+    outline: none !important;
+    padding: 8px !important;
+    width: 16px !important;
+    height: 16px !important;
+    border-radius: 50% !important;
+    box-shadow: none !important;
+    font-size: 16px !important;
+    transform: none !important;
+    transition: background-color 0.2s ease !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.react-datepicker__navigation:hover {
+    background: rgba(244, 206, 20, 0.3) !important;
+    transform: none !important;
+}
+
+.react-datepicker__navigation--previous {
+    left: 8px !important;
+}
+
+.react-datepicker__navigation--next {
+    right: 8px !important;
+}
+
+/* Переопределяем ВСЕ кнопки внутри календаря */
+.react-datepicker button,
+.react-datepicker__navigation,
+.react-datepicker__month-select,
+.react-datepicker__year-select {
+    background: none !important;
+    border: none !important;
+    padding: 2px !important;
+    margin: 0 !important;
+    font-size: inherit !important;
+    border-radius: 4px !important;
+    box-shadow: none !important;
+    transform: none !important;
+    transition: background-color 0.2s ease !important;
+    width: auto !important;
+    height: auto !important;
+    font-family: 'Karla', sans-serif !important;
+    font-weight: normal !important;
+    color: #333333 !important;
+}
+
+.react-datepicker button:hover,
+.react-datepicker__month-select:hover,
+.react-datepicker__year-select:hover {
+    background: rgba(244, 206, 20, 0.3) !important;
+    transform: none !important;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .booking-form {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+
+    .booking-form h2 {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+        margin-bottom: 1rem;
+    }
+
+    .form-label label {
+        font-size: 1rem;
+    }
+
+    .form-label input,
+    .form-label select,
+    .form-label textarea {
+        font-size: 0.9rem;
+        padding: 0.6rem;
+    }
+
+    .booking-form button[type="submit"] {
+        font-size: 1rem !important;
+        padding: 0.8rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .booking-form {
+        padding: 1rem;
+        margin: 0.5rem;
+    }
+
+    .booking-form h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+    }
+
+    .form-label {
+        margin-bottom: 0.75rem;
+    }
+
+    .form-label input,
+    .form-label select,
+    .form-label textarea {
+        font-size: 0.85rem;
+        padding: 0.5rem;
+    }
+
+    .booking-form button[type="submit"] {
+        font-size: 0.9rem !important;
+        padding: 0.7rem !important;
+    }
+}

@@ -1,0 +1,99 @@
+.testimonials-section {
+    background-color: #FBDABB;
+}
+
+.testimonials-content {
+    /*display: flex;*/
+    /*flex-direction: row;*/
+}
+
+.testimonials-content h1 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 2rem;
+    font-size: 64px;
+    font-family: 'Markazi', serif;
+    font-weight: 600;
+    color: #333333;
+}
+
+.review-cards {
+    grid-column: 3 / 11;
+    overflow-x: auto;
+    overflow-y: hidden;
+    display: flex;
+    /*gap: 5px;*/
+    padding-bottom: 10px; /* Добавляем отступ снизу для скроллбара */
+
+    /* Touch support */
+    -webkit-overflow-scrolling: touch;
+    /*scroll-behavior: smooth;*/
+
+    /* Mouse drag support */
+    /*cursor: grab;*/
+
+    /* Fade out effect */
+    mask-image: linear-gradient(to right, black 98%, transparent 100%);
+}
+
+.review-cards:active {
+    cursor: grabbing;
+}
+
+/* Убираем сжатие карточек */
+.review-cards .review-card {
+    flex: 0 0 260px; /* Фиксированная ширина, без сжатия */
+    min-width: 260px;
+    user-select: none; /* Предотвращаем выделение текста при перетаскивании */
+}
+
+/* Опционально: стилизация скроллбара */
+.review-cards::-webkit-scrollbar {
+    height: 8px;
+}
+
+.review-cards::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.review-cards::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+.review-cards::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .testimonials-content h1 {
+        font-size: 48px;
+    }
+
+    .review-cards {
+        grid-column: 1 / -1;
+        padding: 0 1rem;
+    }
+
+    .review-cards .review-card {
+        flex: 0 0 240px;
+        min-width: 240px;
+    }
+}
+
+@media (max-width: 480px) {
+    .testimonials-content h1 {
+        font-size: 36px;
+    }
+
+    .review-cards {
+        padding: 0 0.5rem;
+    }
+
+    .review-cards .review-card {
+        flex: 0 0 220px;
+        min-width: 220px;
+    }
+}
