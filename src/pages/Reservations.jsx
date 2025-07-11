@@ -2,10 +2,10 @@ import BookingForm from "../components/BookingForm";
 import {useReducer } from "react";
 
 const ACTIONS = {
+    ADD_BOOKING: 'ADD_BOOKING',
     SET_WEEKEND_TIMES: 'SET_WEEKEND_TIMES',
     SET_WORKDAY_TIMES: 'SET_WORKDAY_TIMES',
-    REMOVE_TIME: 'REMOVE_TIME',
-    RESET_REMOVED_TIMES: 'RESET_REMOVED_TIMES'
+    SET_SELECTED_DATE: 'SET_SELECTED_DATE'
 };
 
 const TIME_SLOTS = {
@@ -22,6 +22,24 @@ const TIME_SLOTS = {
 
 const reducer = (state, action) => {
     switch (action.type) {
+        case ACTIONS.ADD_BOOKING:
+            const newBookingDate = new Date(action.bookingData.date);
+            const [hours, minutes] = action.bookingData.time.split(':').map(Number);
+            newBookingDate.setHours(hours, minutes, 0, 0);
+
+            return {
+                ...state,
+                bookedDates: [
+                    ...state.bookedDates, 
+                    {
+                        ...action.bookingData,
+                        date: newBookingDate,
+                        id: Date.now(),
+                        status: 'confirmed'
+                    }
+                ]
+            };
+
         case ACTIONS.SET_WEEKEND_TIMES:
             return {
                 ...state,
@@ -34,16 +52,10 @@ const reducer = (state, action) => {
                 baseTimes: TIME_SLOTS.WORKDAYS
             };
 
-        case ACTIONS.REMOVE_TIME:
+        case ACTIONS.SET_SELECTED_DATE:
             return {
                 ...state,
-                removedTimes: [...state.removedTimes, action.time]
-            };
-
-        case ACTIONS.RESET_REMOVED_TIMES:
-            return {
-                ...state,
-                removedTimes: []
+                selectedDate: action.date
             };
 
         default:
@@ -53,34 +65,43 @@ const reducer = (state, action) => {
 
 function Reservations() {
     const initialState = {
+        bookedDates: [],
+        selectedDate: null,
         baseTimes: TIME_SLOTS.WORKDAYS,
-        removedTimes: []
     };
 
     const [state, dispatch] = useReducer(reducer, initialState);
 
-    const availableTimes = state.baseTimes.filter(
-        time => !state.removedTimes.includes(time)
-    );
+    const getAvailableTimes = () => {
+        if (!state.selectedDate) return []; // null protection
+        
+        const bookedTimes = state.bookedDates
+            .filter(booking => 
+                booking.date && 
+                booking.date.toDateString() === state.selectedDate.toDateString()
+            )
+            .map(booking => booking.time);
+
+        return state.baseTimes.filter(time => !bookedTimes.includes(time));
+    };
 
     const handleSubmit = (formData) => {
         console.log('Form submitted:', formData);
 
-        // Здесь можно добавить логику:
-        // - Отправка данных на сервер
-        // - Обновление доступных времен
-        // - Показ уведомления об успешном бронировании
-
-        // Пример: убираем забронированное время
         dispatch({
-            type: ACTIONS.REMOVE_TIME,
-            date: formData.date,
-            time: formData.time,
+            type: ACTIONS.ADD_BOOKING,
+            bookingData: formData
         });
-    }
+    };
 
-    // Функция для обновления доступных времен (например, по дате)
     const updateAvailableTimes = (selectedDate) => {
+        dispatch({
+            type: ACTIONS.SET_SELECTED_DATE,
+            date: selectedDate
+        });
+
+        if (!state.selectedDate) return []; // null protection
+
         const isWeekend = selectedDate && (selectedDate.getDay() === 0 || selectedDate.getDay() === 6);
 
         if (isWeekend) {
@@ -91,9 +112,16 @@ function Reservations() {
     };
 
     return (
-        <section className={"reservations-section"}>
+        <section 
+            className="reservations-section" 
+            aria-labelledby="reservations-heading"
+            role="main"
+        >
+            <h1 id="reservations-heading" className="visually-hidden">
+                Table Reservations
+            </h1>
             <BookingForm
-                availableTimes={availableTimes}
+                availableTimes={getAvailableTimes()}
                 onSubmit={handleSubmit}
                 onDateChange={updateAvailableTimes}
             />
