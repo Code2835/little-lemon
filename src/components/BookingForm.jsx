@@ -3,7 +3,7 @@ import './BookingForm.css';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css"; // Добавляем импорт стилей
 
-function BookingForm() {
+function BookingForm( { availableTimes, onSubmit, onDateChange }) {
     const [formData, setFormData] = useState({
         date: null, // Меняем на null для DatePicker
         time: '',
@@ -14,8 +14,8 @@ function BookingForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('Form submitted:', formData);
-        // Здесь будет логика отправки формы
+        // Передаем данные в родительский компонент
+        onSubmit(formData);
     }
 
     const handleChange = (e) => {
@@ -31,6 +31,11 @@ function BookingForm() {
             ...prev,
             date: date
         }));
+
+        // Уведомляем родительский компонент об изменении даты
+        if (onDateChange) {
+            onDateChange(date);
+        }
     }
 
     return (
@@ -56,12 +61,9 @@ function BookingForm() {
                 <label htmlFor="time">Time *</label>
                 <select name="time" id="time" value={formData.time} onChange={handleChange} required>
                     <option value="">Select time</option>
-                    <option value="17:00">17:00</option>
-                    <option value="18:00">18:00</option>
-                    <option value="19:00">19:00</option>
-                    <option value="20:00">20:00</option>
-                    <option value="21:00">21:00</option>
-                    <option value="22:00">22:00</option>
+                    {availableTimes.map(time => (
+                        <option key={time} value={time}>{time}</option>
+                    ))}
                 </select>
             </div>
 
