@@ -212,7 +212,6 @@ function BookingForm( { availableTimes, onSubmit, onDateChange }) {
                     value={formData.guests} 
                     onChange={handleChange} 
                     required
-                    aria-required="true"
                     aria-describedby="guests-help"
                     aria-valuemin="1"
                     aria-valuemax="5"

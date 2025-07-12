@@ -4,29 +4,23 @@
   "private": true,
   "dependencies": {
     "@testing-library/dom": "^10.4.0",
-    "@testing-library/jest-dom": "^6.6.3",
-    "@testing-library/react": "^16.3.0",
-    "@testing-library/user-event": "^13.5.0",
     "react": "^19.1.0",
     "react-datepicker": "^8.4.0",
     "react-dom": "^19.1.0",
     "react-router-dom": "^7.6.3",
-    "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "react-scripts": "^5.1.0-next.26",
+    "web-vitals": "^5.0.3"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest",
-      "plugin:storybook/recommended"
+      "react-app/jest"
     ]
   },
   "browserslist": {
@@ -42,13 +36,10 @@
     ]
   },
   "devDependencies": {
-    "@storybook/addon-docs": "^9.0.16",
-    "@storybook/addon-onboarding": "^9.0.16",
-    "@storybook/preset-create-react-app": "^9.0.16",
-    "@storybook/react-webpack5": "^9.0.16",
-    "eslint-plugin-storybook": "^9.0.16",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
     "prop-types": "^15.8.1",
-    "storybook": "^9.0.16",
     "webpack": "^5.100.0"
   }
 }

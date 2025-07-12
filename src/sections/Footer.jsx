@@ -9,12 +9,11 @@ function Footer() {
           src="/assets/logo_big.webp"
           alt="Little Lemon Restaurant Logo"
           className="logo"
-          role="img"
         />
 
         <div aria-labelledby="footer-nav-heading">
           <h2 id="footer-nav-heading">Site Navigation</h2>
-          <ul role="list">
+          <ul>
             <li><Link to="/" aria-label="Go to Home page">Home</Link></li>
             <li><Link to="/about" aria-label="Go to About page">About</Link></li>
             <li><Link to="/menu" aria-label="Go to Menu page">Menu</Link></li>
@@ -26,7 +25,7 @@ function Footer() {
 
         <div aria-labelledby="contact-heading">
           <h2 id="contact-heading">Contact Information</h2>
-          <ul role="list">
+          <ul>
             <li>
               <address>
                 123 Main Street<br />
@@ -48,7 +47,7 @@ function Footer() {
 
         <div aria-labelledby="social-heading">
           <h2 id="social-heading">Follow Us</h2>
-          <ul role="list">
+          <ul>
             <li>
               <a
                 href="https://facebook.com/littlelemon"
