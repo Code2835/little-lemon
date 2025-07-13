@@ -78,48 +78,22 @@ function Reservations() {
     const today = new Date();
 
     const initialState = {
-        bookedDates: [],
+        bookedDates: (()=>{
+            const storedDates = localStorage.getItem("bookingData");
+            if (storedDates && storedDates.length > 0){
+                return JSON.parse(storedDates).map(booking => ({
+                    ...booking,
+                    date: typeof booking.date === "string" ? new Date(booking.date) : booking.date,
+                }));
+            }
+            return [];
+        })(), // IIFE - Immediately Invoked Function Expression
         selectedDate: today,
         baseTimes: TIME_SLOTS.WORKDAYS,
         // apiLoaded: false
     };
 
     const [state, dispatch] = useReducer(reducer, initialState);
-
-    // // Функции для сохранения API в память
-    // let fetchAPI = null;
-    // let submitAPI = null;
-    //
-    // const loadAPIFunctions = async () => {
-    //     try {
-    //         // Загружаем JavaScript файл как текст
-    //         const response = await fetch('https://raw.githubusercontent.com/courseraap/capstone/main/api.js');
-    //         const scriptText = await response.text();
-    //
-    //         // Создаем новый скрипт элемент и выполняем код
-    //         const script = document.createElement('script');
-    //         script.textContent = scriptText;
-    //         document.head.appendChild(script);
-    //
-    //         // Сохраняем функции в локальные переменные
-    //         if (window.fetchAPI && window.submitAPI) {
-    //             fetchAPI = window.fetchAPI;
-    //             submitAPI = window.submitAPI;
-    //             console.log('API functions loaded successfully');
-    //
-    //             // Обновляем состояние
-    //             dispatch({
-    //                 type: 'SET_API_LOADED',
-    //                 loaded: true
-    //             });
-    //         } else {
-    //             console.error('API functions not found in loaded script');
-    //         }
-    //
-    //     } catch (error) {
-    //         console.error('Error loading API functions:', error);
-    //     }
-    // };
 
     const getAvailableTimes = () => {
         if (!state.selectedDate) return []; // null protection
@@ -150,17 +124,6 @@ function Reservations() {
         if (submitted) {
             navigate('/confirmed');
         }
-
-        // if (window.submitAPI) {
-        //     try {
-        //         const submitted = window.submitAPI(formData);
-        //         console.log('API submission result:', submitted);
-        //     } catch (error) {
-        //         console.error('Error submitting via API:', error);
-        //     }
-        // } else {
-        //     console.warn('submitAPI not loaded yet');
-        // }
     };
 
     const updateAvailableTimes = (selectedDate) => {
@@ -188,78 +151,12 @@ function Reservations() {
             type: times && Array.isArray(times) ? ACTIONS.SET_FROM_FETCH_API : ACTIONS.SET_WORKDAY_TIMES,
             times: times
         } );
-
-        // try {
-        //     const times = window.fetchAPI(selectedDate);
-        //     console.log('API times:', times);
-        //
-        //     if (times && Array.isArray(times)) {
-        //         dispatch({
-        //             type: ACTIONS.SET_FROM_FETCH_API,
-        //             times: times
-        //         });
-        //     } else {
-        //         // Fallback к стандартным временам
-        //         const isWeekend = selectedDate.getDay() === 0 || selectedDate.getDay() === 6;
-        //         dispatch({
-        //             type: isWeekend ? ACTIONS.SET_WEEKEND_TIMES : ACTIONS.SET_WORKDAY_TIMES
-        //         });
-        //     }
-        // } catch (error) {
-        //     console.error('Error fetching times:', error);
-        //     // Fallback в случае ошибки
-        //     const isWeekend = selectedDate.getDay() === 0 || selectedDate.getDay() === 6;
-        //     dispatch({
-        //         type: isWeekend ? ACTIONS.SET_WEEKEND_TIMES : ACTIONS.SET_WORKDAY_TIMES
-        //     });
-        // }
-
-        // // with fetchAPI
-        // if (window.fetchAPI) {
-        //     try {
-        //         const times = window.fetchAPI(selectedDate);
-        //         console.log('API times:', times);
-        //
-        //         if (times && Array.isArray(times)) {
-        //             dispatch({
-        //                 type: ACTIONS.SET_FROM_FETCH_API,
-        //                 times: times
-        //             });
-        //         } else {
-        //             // Fallback к стандартным временам
-        //             const isWeekend = selectedDate.getDay() === 0 || selectedDate.getDay() === 6;
-        //             dispatch({
-        //                 type: isWeekend ? ACTIONS.SET_WEEKEND_TIMES : ACTIONS.SET_WORKDAY_TIMES
-        //             });
-        //         }
-        //     } catch (error) {
-        //         console.error('Error fetching times:', error);
-        //         // Fallback в случае ошибки
-        //         const isWeekend = selectedDate.getDay() === 0 || selectedDate.getDay() === 6;
-        //         dispatch({
-        //             type: isWeekend ? ACTIONS.SET_WEEKEND_TIMES : ACTIONS.SET_WORKDAY_TIMES
-        //         });
-        //     }
-        // } else {
-        //     // Fallback без API
-        //     const isWeekend = selectedDate.getDay() === 0 || selectedDate.getDay() === 6;
-        //     dispatch({
-        //         type: isWeekend ? ACTIONS.SET_WEEKEND_TIMES : ACTIONS.SET_WORKDAY_TIMES
-        //     });
-        // }
     };
 
-    // with fetchAPI
-    // const fetchData = () => {
-    //     fetch(`https://raw.githubusercontent.com/courseraap/capstone/main/api.js`)
-    //         .then((response) => response.json())
-    //         .then((jsonData) => setBtcData(jsonData.bpi.USD))
-    //         .catch((error) => console.log(error));
-    // };
-    //
-    // useEffect(() => {
-    //     fetchData();
-    // }, []);
+    // local storage
+    useEffect(() => {
+        localStorage.setItem('bookingData', JSON.stringify(state.bookedDates));
+    }, [state.bookedDates]);
 
     return (
         <section 
