@@ -135,6 +135,12 @@
     transform: translateY(0) !important;
 }
 
+.booking-form button[type="submit"]:disabled {
+    background-color: #ccc !important;
+    cursor: not-allowed !important;
+    box-shadow: none !important;
+}
+
 /* Custom DatePicker Styles */
 .date-picker-wrapper {
     width: 100%;

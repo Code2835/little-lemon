@@ -2,6 +2,7 @@ import {useState} from "react";
 import './BookingForm.css';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useEffect } from "react";
 
 function BookingForm( { availableTimes, onSubmit, onDateChange }) {
     const [formData, setFormData] = useState({
@@ -16,6 +17,7 @@ function BookingForm( { availableTimes, onSubmit, onDateChange }) {
     });
 
     const [errors, setErrors] = useState({});
+    const [buttonDisabled, setButtonDisabled] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -30,12 +32,13 @@ function BookingForm( { availableTimes, onSubmit, onDateChange }) {
 
         if (Object.keys(newErrors).length > 0) {
             setErrors(newErrors);
+            setButtonDisabled(true);
             return;
         }
 
         setErrors({});
         onSubmit(formData);
-        
+
         setFormData({
             date: null,
             time: '',
@@ -83,9 +86,14 @@ function BookingForm( { availableTimes, onSubmit, onDateChange }) {
         onDateChange(date);
     };
 
+    useEffect(() => {
+        const hasErrors = Object.values(errors).some(err => typeof err === 'string' && err.length > 0);
+        setButtonDisabled(hasErrors);
+}, [errors]);
+
     return (
-        <form 
-            onSubmit={handleSubmit} 
+        <form
+            onSubmit={handleSubmit}
             className="booking-form"
             aria-labelledby="booking-form-title"
             noValidate
@@ -94,12 +102,12 @@ function BookingForm( { availableTimes, onSubmit, onDateChange }) {
 
             <div className="form-label">
                 <label htmlFor="name">Name *</label>
-                <input 
-                    name="name" 
-                    type="text" 
-                    id="name" 
-                    value={formData.name} 
-                    onChange={handleChange} 
+                <input
+                    name="name"
+                    type="text"
+                    id="name"
+                    value={formData.name}
+                    onChange={handleChange}
                     required
                     aria-required="true"
                     aria-describedby="name-error"
@@ -113,12 +121,12 @@ function BookingForm( { availableTimes, onSubmit, onDateChange }) {
 
             <div className="form-label">
                 <label htmlFor="email">Email *</label>
-                <input 
-                    name="email" 
-                    type="email" 
-                    id="email" 
-                    value={formData.email} 
-                    onChange={handleChange} 
+                <input
+                    name="email"
+                    type="email"
+                    id="email"
+                    value={formData.email}
+                    onChange={handleChange}
                     required
                     aria-required="true"
                     aria-describedby="email-error"
@@ -132,11 +140,11 @@ function BookingForm( { availableTimes, onSubmit, onDateChange }) {
 
             <div className="form-label">
                 <label htmlFor="phone">Phone</label>
-                <input 
-                    name="phone" 
-                    type="tel" 
-                    id="phone" 
-                    value={formData.phone} 
+                <input
+                    name="phone"
+                    type="tel"
+                    id="phone"
+                    value={formData.phone}
                     onChange={handleChange}
                     aria-describedby="phone-help"
                 />
@@ -171,11 +179,11 @@ function BookingForm( { availableTimes, onSubmit, onDateChange }) {
 
             <div className="form-label">
                 <label htmlFor="time">Time *</label>
-                <select 
-                    name="time" 
-                    id="time" 
-                    value={formData.time} 
-                    onChange={handleChange} 
+                <select
+                    name="time"
+                    id="time"
+                    value={formData.time}
+                    onChange={handleChange}
                     required
                     aria-required="true"
                     aria-describedby="time-help"
@@ -191,8 +199,8 @@ function BookingForm( { availableTimes, onSubmit, onDateChange }) {
                     </div>
                 )}
                 <div id="time-help" className="help-text">
-                    {availableTimes.length === 0 ? 
-                        "Please select a date first to see available times" : 
+                    {availableTimes.length === 0 ?
+                        "Please select a date first to see available times" :
                         `${availableTimes.length} time slots available`
                     }
                 </div>
@@ -203,14 +211,14 @@ function BookingForm( { availableTimes, onSubmit, onDateChange }) {
                     <label htmlFor="guests">Guests:</label>
                     <span aria-live="polite">{formData.guests}</span>
                 </div>
-                <input 
-                    name="guests" 
-                    type="range" 
-                    id="guests" 
-                    min="1" 
-                    max="5" 
-                    value={formData.guests} 
-                    onChange={handleChange} 
+                <input
+                    name="guests"
+                    type="range"
+                    id="guests"
+                    min="1"
+                    max="5"
+                    value={formData.guests}
+                    onChange={handleChange}
                     required
                     aria-describedby="guests-help"
                     aria-valuemin="1"
@@ -225,11 +233,11 @@ function BookingForm( { availableTimes, onSubmit, onDateChange }) {
 
             <div className="form-label">
                 <label htmlFor="occasion">Occasion *</label>
-                <select 
-                    name="occasion" 
-                    id="occasion" 
-                    value={formData.occasion} 
-                    onChange={handleChange} 
+                <select
+                    name="occasion"
+                    id="occasion"
+                    value={formData.occasion}
+                    onChange={handleChange}
                     required
                     aria-required="true"
                 >
@@ -262,9 +270,10 @@ function BookingForm( { availableTimes, onSubmit, onDateChange }) {
                 </div>
             </div>
 
-            <button 
+            <button
                 type="submit"
                 aria-describedby="submit-help"
+                disabled={buttonDisabled}
             >
                 Make Reservation
             </button>
