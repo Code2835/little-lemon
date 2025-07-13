@@ -1,7 +1,10 @@
 function Menu() {
     return (
         <section className="menu-section">
-            <h1>Menu page</h1>
+            <article className="menu-content">
+                <h1>Menu</h1>
+                <p>Explore our delicious offerings...</p>
+            </article>
         </section>
     );
 }

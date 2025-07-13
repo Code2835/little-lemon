@@ -34,7 +34,7 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 bookedDates: [
-                    ...state.bookedDates, 
+                    ...state.bookedDates,
                     {
                         ...action.bookingData,
                         date: newBookingDate,
@@ -97,10 +97,10 @@ function Reservations() {
 
     const getAvailableTimes = () => {
         if (!state.selectedDate) return []; // null protection
-        
+
         const bookedTimes = state.bookedDates
-            .filter(booking => 
-                booking.date && 
+            .filter(booking =>
+                booking.date &&
                 booking.date.toDateString() === state.selectedDate.toDateString()
             )
             .map(booking => booking.time);
@@ -120,7 +120,7 @@ function Reservations() {
         // with submitAPI
         const submitted = submitAPI(formData);
         console.log('API submission result:', submitted);
-        
+
         if (submitted) {
             navigate('/confirmed');
         }
@@ -159,8 +159,8 @@ function Reservations() {
     }, [state.bookedDates]);
 
     return (
-        <section 
-            className="reservations-section" 
+        <section
+            className="reservations-section"
             aria-labelledby="reservations-heading"
             role="main"
         >
